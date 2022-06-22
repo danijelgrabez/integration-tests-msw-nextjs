@@ -1,7 +1,43 @@
+import { build, sequence, perBuild } from '@jackfranklin/test-data-bot';
+import { faker } from '@faker-js/faker';
+import { Class, Spell } from '../../generated/graphql';
+import { buildTimes } from '../utils';
+
+// Note: Modification will probably be required
+type ModifiedSpell = Pick<
+  Spell,
+  'index' | 'casting_time' | 'range' | 'components' | 'duration' | 'name' | 'classes'
+>;
+
+/**
+ * Spell object mother
+ */
+export const spellBuilder = build<ModifiedSpell>({
+  fields: {
+    index: sequence((x) => `special-${x}`),
+    casting_time: '1 action',
+    range: '90 feet',
+    components: ['V', 'S', 'M'],
+    duration: 'Instantaneous',
+    name: perBuild(() => faker.name.firstName()),
+    classes: [
+      {
+        name: 'Wizard',
+      },
+    ],
+  },
+});
+
+export const buildListWithThreeItems = () => buildTimes(spellBuilder, 3);
+
 export const mockedListItemName = 'AAAAAcid Splash';
 
-export const generateList = () => [
+/**
+ * Manual mock
+ */
+export const generateList = (): ModifiedSpell[] => [
   {
+    // "a": "aaa", // Note: TS will complain (same if we remove the field). We only have to consider how strict are our type on Quokka layer
     index: 'acid-splash',
     casting_time: '1 action',
     range: '60 feet',
@@ -11,14 +47,11 @@ export const generateList = () => [
     classes: [
       {
         name: 'Sorcerer',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Wizard',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'acid-arrow',
@@ -30,10 +63,8 @@ export const generateList = () => [
     classes: [
       {
         name: 'Wizard',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'aid',
@@ -45,14 +76,11 @@ export const generateList = () => [
     classes: [
       {
         name: 'Cleric',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Paladin',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'alarm',
@@ -64,14 +92,11 @@ export const generateList = () => [
     classes: [
       {
         name: 'Ranger',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Wizard',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'alter-self',
@@ -83,14 +108,11 @@ export const generateList = () => [
     classes: [
       {
         name: 'Sorcerer',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Wizard',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'animal-friendship',
@@ -102,22 +124,17 @@ export const generateList = () => [
     classes: [
       {
         name: 'Bard',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Cleric',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Druid',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Ranger',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'animal-messenger',
@@ -129,18 +146,14 @@ export const generateList = () => [
     classes: [
       {
         name: 'Bard',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Druid',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Ranger',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'animal-shapes',
@@ -152,10 +165,8 @@ export const generateList = () => [
     classes: [
       {
         name: 'Druid',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'animate-dead',
@@ -167,14 +178,11 @@ export const generateList = () => [
     classes: [
       {
         name: 'Cleric',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Wizard',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
   {
     index: 'animate-objects',
@@ -186,17 +194,13 @@ export const generateList = () => [
     classes: [
       {
         name: 'Bard',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Sorcerer',
-        __typename: 'AbilityScoreSkills',
       },
       {
         name: 'Wizard',
-        __typename: 'AbilityScoreSkills',
       },
     ],
-    __typename: 'Spell',
   },
 ];

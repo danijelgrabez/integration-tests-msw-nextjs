@@ -25,12 +25,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
+    "@faker-js/faker": "^7.3.0",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/fragment-matcher": "^3.2.1",
     "@graphql-codegen/typescript": "^2.5.1",
     "@graphql-codegen/typescript-graphql-files-modules": "^2.1.1",
     "@graphql-codegen/typescript-operations": "^2.4.2",
     "@graphql-codegen/typescript-urql": "^3.5.12",
+    "@jackfranklin/test-data-bot": "^2.0.0",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
@@ -60,5 +62,8 @@
     "typescript": "4.7.4",
     "whatwg-fetch": "^3.6.2",
     "wonka": "^4.0.15"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

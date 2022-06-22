@@ -8,7 +8,7 @@ import { mockedListItemName } from '../../mocks/generators/list';
 
 describe('List', () => {
   it('renders List', async () => {
-    const { debug } = render(
+    render(
       <Provider value={client}>
         <List />
       </Provider>
