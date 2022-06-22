@@ -1,6 +1,6 @@
 import { gql } from 'urql';
 
-export const LIST = gql`
+export const Spells = gql`
   query Spells {
     spells(limit: 10) {
       index

@@ -11,6 +11,7 @@
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.yml",
     "storybook": "start-storybook -p 6006",
+    "storybook:integration": "NEXT_PUBLIC_API_MOCKING=enabled start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
     "e2e": "cypress open"
   },
@@ -46,6 +47,7 @@
     "eslint-config-next": "12.1.6",
     "eslint-plugin-storybook": "^0.5.12",
     "msw": "^0.42.1",
+    "msw-storybook-addon": "^1.6.3",
     "typescript": "4.7.4",
     "wonka": "^4.0.15"
   }
