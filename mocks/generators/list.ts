@@ -1,3 +1,5 @@
+export const mockedListItemName = 'AAAAAcid Splash';
+
 export const generateList = () => [
   {
     index: 'acid-splash',
@@ -5,7 +7,7 @@ export const generateList = () => [
     range: '60 feet',
     components: ['V', 'S'],
     duration: 'Instantaneous',
-    name: 'AAAAAcid Splash',
+    name: mockedListItemName,
     classes: [
       {
         name: 'Sorcerer',
