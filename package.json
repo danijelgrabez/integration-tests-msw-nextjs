@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:integration": "NEXT_PUBLIC_API_MOCKING=enabled next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -44,6 +45,7 @@
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
     "eslint-plugin-storybook": "^0.5.12",
+    "msw": "^0.42.1",
     "typescript": "4.7.4",
     "wonka": "^4.0.15"
   }

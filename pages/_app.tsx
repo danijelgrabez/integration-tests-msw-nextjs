@@ -3,7 +3,11 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import { createClient, Provider } from 'urql';
 
-const client = createClient({
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../mocks');
+}
+
+export const client = createClient({
   url: 'https://www.dnd5eapi.co/graphql',
 });
 
