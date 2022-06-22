@@ -1,0 +1,12 @@
+overwrite: true
+schema: https://www.dnd5eapi.co/graphql
+documents: 'components/**/*.graphql.ts'
+generates:
+  generated/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-urql'
+      - 'fragment-matcher'
+    config:
+      withHooks: true
