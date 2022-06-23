@@ -10,3 +10,12 @@ generates:
       - 'fragment-matcher'
     config:
       withHooks: true
+  generated/graphql-fixtures.ts:
+    plugins:
+      - graphql-codegen-typescript-fixtures
+    config:
+      fixtures:
+        immer: true
+        typeDefinitionModule: 'path/to/graphql/types.ts'
+        # scalarDefaults:
+        # Date: "'2021-01-01'"

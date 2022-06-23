@@ -1,3 +1,6 @@
+/**
+ * Example with test-data-bot and faker
+ */
 import { build, sequence, perBuild } from '@jackfranklin/test-data-bot';
 import { faker } from '@faker-js/faker';
 import { Class, Spell } from '../../generated/graphql';
@@ -13,7 +16,9 @@ type ModifiedSpell = Pick<
  * Spell object mother
  */
 export const spellBuilder = build<ModifiedSpell>({
+  // NOTE: Autocomplete works
   fields: {
+    // test: "TS should complain", // Note: TS complains as expected
     index: sequence((x) => `special-${x}`),
     casting_time: '1 action',
     range: '90 feet',
