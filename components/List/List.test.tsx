@@ -6,6 +6,8 @@ import '@testing-library/jest-dom';
 import { List } from './index';
 import { mockedListItemName } from '../../mocks/generators/list';
 
+// NOTE: When resolver mocks are adjusted, some tests might fail.
+// Consider if this is a good thing.
 describe('List', () => {
   it('renders List', async () => {
     render(
