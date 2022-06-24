@@ -1,12 +1,13 @@
 /**
  * Example with test-data-bot and faker
  */
-import { build, sequence, perBuild } from '@jackfranklin/test-data-bot';
+import { build, sequence, perBuild, oneOf } from '@jackfranklin/test-data-bot';
 import { faker } from '@faker-js/faker';
-import { Class, Spell } from '../../generated/graphql';
+// Note: We can use type from the query (SpellsQuery) → in that case builder naming might have to reflect that
+import { SpellsQuery, Spell } from '../../generated/graphql';
 import { buildTimes } from '../utils';
 
-// Note: Modification will probably be required
+// Note: Modification will probably be required in some scenarios
 type ModifiedSpell = Pick<
   Spell,
   'index' | 'casting_time' | 'range' | 'components' | 'duration' | 'name' | 'classes'
@@ -15,12 +16,12 @@ type ModifiedSpell = Pick<
 /**
  * Spell object mother
  */
-export const spellBuilder = build<ModifiedSpell>({
+export const spellBuilder = build<SpellsQuery['spells'][0]>({
   // NOTE: Autocomplete works
   fields: {
     // test: "TS should complain", // Note: TS complains as expected
     index: sequence((x) => `special-${x}`),
-    casting_time: '1 action',
+    casting_time: oneOf('1 action', '2 actions', '3 actions'), // Note: randomization
     range: '90 feet',
     components: ['V', 'S', 'M'],
     duration: 'Instantaneous',
@@ -33,12 +34,11 @@ export const spellBuilder = build<ModifiedSpell>({
   },
 });
 
-export const buildListWithThreeItems = () => buildTimes(spellBuilder, 3);
-
 export const mockedListItemName = 'AAAAAcid Splash';
 
 /**
  * Manual mock
+ * Note: Simplest approach, reliable enough
  */
 export const generateList = (): ModifiedSpell[] => [
   {
@@ -208,4 +208,10 @@ export const generateList = (): ModifiedSpell[] => [
       },
     ],
   },
+];
+
+// Note: Approach with more abstraction
+export const buildListWithTenItems = () => [
+  spellBuilder({ overrides: { name: mockedListItemName } }),
+  ...buildTimes(spellBuilder, 9),
 ];
