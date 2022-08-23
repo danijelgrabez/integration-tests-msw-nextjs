@@ -41,13 +41,23 @@ const userBuilder = build<User>({
     name: 'jack',
     admin: perBuild(() => false),
     status: 'inactive',
+    premium: false,
   },
   traits: {
     admin: {
       overrides: { admin: perBuild(() => true), status: 'active' },
     },
+    premium: {
+      overrides: { premium: true },
+    }
   },
 });
 
 const adminUser = userBuilder({ traits: 'admin' }); // no need to override multiple fields, it is taken care from the builder
 ```
+
+You can define and use multiple traits when building an object. Be aware that if two traits override the same value, the one passed in last wins:
+```ts
+const adminAndPremiumUser = userBuilder({ traits: ['admin', 'premium'] });
+```
+
