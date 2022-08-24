@@ -1,4 +1,4 @@
-import type { Spell, SpellsQuery, SpellsQueryVariables } from '../../generated/graphql';
+import type { SpellFragment, SpellsQueryVariables } from '../../generated/graphql';
 
 type Action =
   | {
@@ -10,17 +10,17 @@ type Action =
         variables: SpellsQueryVariables;
       };
     }
-  | { type: 'FETCH_SUCCESS'; payload: { items: Partial<Spell>[] } }
+  | { type: 'FETCH_SUCCESS'; payload: { items: SpellFragment[] } }
   | { type: 'FETCH_ERROR' };
 
 interface State {
   fetching: boolean;
-  items: Partial<Spell>[];
+  items: SpellFragment[];
   variables: SpellsQueryVariables;
 }
 
 // Normalize incoming data
-const mergeData = (a1: Partial<Spell>[], a2: Partial<Spell>[]) => {
+const mergeData = (a1: SpellFragment[], a2: SpellFragment[]) => {
   const res = [...a1];
   for (let i = 0; i < a2.length; i++) {
     if (!res.find((x) => x.index === a2[i].index)) {

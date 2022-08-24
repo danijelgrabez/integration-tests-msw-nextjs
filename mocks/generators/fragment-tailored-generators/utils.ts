@@ -4,6 +4,7 @@
  * AST to validator
  * GQL Introspection → [['field', undefined], ['field', [['nested', undefined]]]]
  */
+// @ts-ignore
 export const toValidator = (obj: any) => {
   if (obj.kind === 'Document') {
     return obj.definitions.map(toValidator);
@@ -38,19 +39,24 @@ export const toValidator = (obj: any) => {
  */
 export function mapper<I, O>(fixture: I, validator: [any]): O {
   const res = Array.isArray(fixture) ? [] : {};
-
+  // @ts-ignore
   if (!validator) return res;
 
   if (Array.isArray(fixture)) {
+    // @ts-ignore
     res.push(...fixture.map((f) => mapper(f, validator)));
   } else {
     for (const [key, next] of validator) {
       if (!next) {
+        // @ts-ignore
         res[key] = fixture[key];
       } else {
+        // @ts-ignore
         if (Array.isArray(fixture[key])) {
+          // @ts-ignore
           res[key] = fixture[key].map((f) => mapper(f, next));
         } else {
+          // @ts-ignore
           res[key] = mapper(fixture[key], next);
         }
       }
