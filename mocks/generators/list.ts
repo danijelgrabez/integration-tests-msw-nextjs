@@ -4,26 +4,26 @@
 import { build, sequence, perBuild, oneOf } from '@jackfranklin/test-data-bot';
 import { faker } from '@faker-js/faker';
 // Note: We can use type from the query (SpellsQuery) → in that case builder naming might have to reflect that
-import { SpellsQuery, Spell } from '../../generated/graphql';
+import { Spell, SpellComponent, SpellFragment } from '../../generated/graphql';
 import { buildTimes } from '../utils';
 
 // Note: Modification will probably be required in some scenarios
 type ModifiedSpell = Pick<
-  Spell,
+  SpellFragment,
   'index' | 'casting_time' | 'range' | 'components' | 'duration' | 'name' | 'classes'
 >;
 
 /**
  * Spell object mother
  */
-export const spellBuilder = build<SpellsQuery['spells'][0]>({
+export const spellBuilder = build<SpellFragment>({
   // NOTE: Autocomplete works
   fields: {
     // test: "TS should complain", // Note: TS complains as expected
     index: sequence((x) => `special-${x}`),
     casting_time: oneOf('1 action', '2 actions', '3 actions'), // Note: randomization
     range: '90 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: 'Instantaneous',
     name: perBuild(() => faker.name.firstName()),
     classes: [
@@ -46,7 +46,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'acid-splash',
     casting_time: '1 action',
     range: '60 feet',
-    components: ['V', 'S'],
+    components: [SpellComponent.V, SpellComponent.S],
     duration: 'Instantaneous',
     name: mockedListItemName,
     classes: [
@@ -62,7 +62,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'acid-arrow',
     casting_time: '1 action',
     range: '90 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: 'Instantaneous',
     name: 'Acid Arrow',
     classes: [
@@ -75,7 +75,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'aid',
     casting_time: '1 action',
     range: '30 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: '8 hours',
     name: 'Aid',
     classes: [
@@ -91,7 +91,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'alarm',
     casting_time: '1 minute',
     range: '30 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: '8 hours',
     name: 'Alarm',
     classes: [
@@ -107,7 +107,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'alter-self',
     casting_time: '1 action',
     range: 'Self',
-    components: ['V', 'S'],
+    components: [SpellComponent.V, SpellComponent.S],
     duration: 'Up to 1 hour',
     name: 'Alter Self',
     classes: [
@@ -123,7 +123,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'animal-friendship',
     casting_time: '1 action',
     range: '30 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: '24 hours',
     name: 'Animal Friendship',
     classes: [
@@ -145,7 +145,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'animal-messenger',
     casting_time: '1 action',
     range: '30 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: '24 hours',
     name: 'Animal Messenger',
     classes: [
@@ -164,7 +164,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'animal-shapes',
     casting_time: '1 action',
     range: '30 feet',
-    components: ['V', 'S'],
+    components: [SpellComponent.V, SpellComponent.S],
     duration: 'Up to 24 hours',
     name: 'Animal Shapes',
     classes: [
@@ -177,7 +177,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'animate-dead',
     casting_time: '1 minute',
     range: '10 feet',
-    components: ['V', 'S', 'M'],
+    components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: 'Instantaneous',
     name: 'Animate Dead',
     classes: [
@@ -193,7 +193,7 @@ export const generateList = (): ModifiedSpell[] => [
     index: 'animate-objects',
     casting_time: '1 action',
     range: '120 feet',
-    components: ['V', 'S'],
+    components: [SpellComponent.V, SpellComponent.S],
     duration: 'Up to 1 minute',
     name: 'Animate Objects',
     classes: [
