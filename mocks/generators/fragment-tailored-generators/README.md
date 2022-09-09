@@ -9,14 +9,6 @@ Ingredients:
 3. mapper utility that returns the expected object
 
 ```js
-// Expected fixture from the fragment
-{
-  "desc": "Example description",
-  "type": {
-      "full_name": "Full name of the ability builder"
-  }
-}
-
 // Fixture defined by the builder
 {
   "__typename": "SpellDc",
@@ -35,4 +27,15 @@ Ingredients:
     "skills": []
   }
 }
+
+// Expected fixture from the fragment
+{
+  "desc": "Example description",
+  "type": {
+      "full_name": "Full name of the ability builder"
+  }
+}
 ```
+
+### Note/TODO:
+- [graphql-anywhere](https://www.npmjs.com/package/graphql-anywhere) seems to solve this challenge pretty nicely (check `filter` utility)
