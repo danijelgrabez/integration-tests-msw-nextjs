@@ -25,6 +25,8 @@ export const spellBuilder = build<SpellFragment>({
     range: '90 feet',
     components: [SpellComponent.V, SpellComponent.S, SpellComponent.M],
     duration: 'Instantaneous',
+    // @ts-ignore used for POC (check the Network tab with MSW; this field will be filtered out)
+    material: 'Example material',
     name: perBuild(() => faker.name.firstName()),
     classes: [
       {

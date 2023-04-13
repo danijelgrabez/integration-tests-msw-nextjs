@@ -2,7 +2,7 @@
 
 const splitNum = (num: number) => [...new Array(num)].map((_, index) => index + 1);
 
-export const buildTimes = (fn: () => void, n: number) => {
+export function buildTimes<T>(fn: () => T, n: number): T[] {
   const arr = splitNum(n);
   const res = [];
 
@@ -11,4 +11,4 @@ export const buildTimes = (fn: () => void, n: number) => {
   }
 
   return res;
-};
+}
