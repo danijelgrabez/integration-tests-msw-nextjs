@@ -5,8 +5,8 @@ This folder explain how might we construct the final fixture based on the define
 Ingredients:
 
 1. fixture builder that is defined by the GraphQL type
-2. validator utility that is based on ASTs generated from `/generated/graphql.ts` file (variables that ends with `Doc`, like `SpellDcFragmentDoc`)
-3. mapper utility that returns the expected object
+2. AST generated from `/generated/graphql.ts` file (variables that ends with `Doc`, like `SpellDcFragmentDoc`)
+3. filter utility from 'graphql-anywhere'
 
 ```js
 // Fixture defined by the builder
@@ -36,6 +36,3 @@ Ingredients:
   }
 }
 ```
-
-### Note/TODO:
-- [graphql-anywhere](https://www.npmjs.com/package/graphql-anywhere) seems to solve this challenge pretty nicely (check `filter` utility)
